@@ -1,0 +1,108 @@
+@import "src/assets/styles/variables";
+
+footer.footer {
+  padding-top: 39px;
+  padding-bottom: 50px;
+  background-color: #648F64;
+
+  .container {
+    display: flex;
+
+    a.logo {
+      margin-right: 63px;
+
+    }
+
+    .footer-block {
+      margin-top: 11px;
+
+      .footer-head {
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 500;
+        font-size: 16px;
+        color: $gray-text-color;
+        margin-bottom: 25px;
+        text-transform: uppercase;
+      }
+
+      .footer-items {
+        ul {
+          list-style: none;
+          padding-left: 0;
+
+          li {
+            margin-bottom: 11px;
+
+            &:last-child {
+              margin-bottom: 0;
+            }
+
+            a {
+              font-size: 16px;
+              color: $gray-text-color;
+              text-decoration: none;
+              cursor: pointer;
+            }
+          }
+        }
+      }
+
+      &.footer-menu {
+        margin-right: 57px;
+      }
+
+      &.footer-categories {
+        margin-right: 34px;
+      }
+
+      &.footer-info {
+        margin-right: 63px;
+
+        .footer-head {
+          margin-bottom: 15px;
+        }
+
+        .footer-social {
+          display: flex;
+          align-items: center;
+          margin-bottom: 55px;
+
+          a {
+            margin-right: 12px;
+          }
+        }
+        .footer-payment {
+          display: grid;
+          grid-template-columns: repeat(3, 70px);
+          gap: 10px;
+          max-width: 230px;
+          .payment-item {
+            height: 35px;
+            background-position: top;
+          }
+        }
+      }
+      &.footer-contacts {
+        max-width: 253px;
+        .footer-contact {
+          margin-bottom: 15px;
+          &:last-child {
+            margin-bottom: 0;
+          }
+          .footer-contact-head {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            font-size: 16px;
+            color: $gray-text-color;
+            margin-bottom: 6px;
+          }
+          .footer-contact-info {
+            font-size: 16px;
+            color: $gray-text-color;
+          }
+        }
+      }
+
+    }
+  }
+}

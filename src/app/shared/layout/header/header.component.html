@@ -1,0 +1,88 @@
+<header class="header">
+  <div class="container">
+    <a href="#" class="logo">
+      <img src="/assets/images/logo.png" alt="Logo">
+    </a>
+    <div class="header-content">
+      <div class="header-top">
+        <div class="header-top-menu">
+          <nav>
+            <ul>
+              <li><a routerLink="/">Главная</a></li>
+              <li><a routerLink="catalog">Каталог</a></li>
+              <li><a routerLink="/" fragment="reviews">Отзывы</a></li>
+              <li><a routerLink="/" fragment="delivery">Оплата и доставка</a></li>
+            </ul>
+          </nav>
+        </div>
+        <a class="header-top-phone" href="tel:+375299182888">
+          + 375 (29) 918-28-88
+        </a>
+        <div class="header-top-actions">
+          <a routerLink="/login" *ngIf="!isLogged">
+            <svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M8.5293 7.24498C8.82638 3.79498 10.5993 2.38623 14.4805 2.38623H14.6051C18.8889 2.38623 20.6043 4.10165 20.6043 8.3854V14.6337C20.6043 18.9175 18.8889 20.6329 14.6051 20.6329H14.4805C10.628 20.6329 8.85513 19.2433 8.53888 15.8508" stroke="#202B21" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M1.91699 11.5H14.2603" stroke="#202B21" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M12.123 8.28955L15.3335 11.5L12.123 14.7104" stroke="#202B21" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a *ngIf="isLogged" [matMenuTriggerFor]="menu">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12.12 12.78C12.05 12.77 11.96 12.77 11.88 12.78C10.12 12.72 8.71997 11.28 8.71997 9.50998C8.71997 7.69998 10.18 6.22998 12 6.22998C13.81 6.22998 15.28 7.69998 15.28 9.50998C15.27 11.28 13.88 12.72 12.12 12.78Z" stroke="#202B21" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M18.74 19.3801C16.96 21.0101 14.6 22.0001 12 22.0001C9.40001 22.0001 7.04001 21.0101 5.26001 19.3801C5.36001 18.4401 5.96001 17.5201 7.03001 16.8001C9.77001 14.9801 14.25 14.9801 16.97 16.8001C18.04 17.5201 18.64 18.4401 18.74 19.3801Z" stroke="#202B21" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="#202B21" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item>
+              <a routerLink="/profile">Профиль</a>
+            </button>
+            <button mat-menu-item>
+              <span (click)="logout()">Выйти</span>
+            </button>
+          </mat-menu>
+          <a routerLink="/favorite" *ngIf="isLogged">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10.9997 19.846C10.7155 19.846 10.4405 19.8093 10.2113 19.7268C6.70967 18.526 1.14551 14.2635 1.14551 7.96596C1.14551 4.75763 3.73967 2.1543 6.92967 2.1543C8.47884 2.1543 9.92717 2.7593 10.9997 3.84096C12.0722 2.7593 13.5205 2.1543 15.0697 2.1543C18.2597 2.1543 20.8538 4.7668 20.8538 7.96596C20.8538 14.2726 15.2897 18.526 11.788 19.7268C11.5588 19.8093 11.2838 19.846 10.9997 19.846ZM6.92967 3.5293C4.50051 3.5293 2.52051 5.51846 2.52051 7.96596C2.52051 14.2268 8.54301 17.7101 10.6605 18.4343C10.8255 18.4893 11.183 18.4893 11.348 18.4343C13.4563 17.7101 19.488 14.236 19.488 7.96596C19.488 5.51846 17.508 3.5293 15.0788 3.5293C13.6855 3.5293 12.393 4.18013 11.5588 5.30763C11.3022 5.65596 10.7155 5.65596 10.4588 5.30763C9.60634 4.17096 8.32301 3.5293 6.92967 3.5293Z" fill="#202B21"/>
+            </svg>
+            <span *ngIf="countFavorites">{{countFavorites}}</span>
+          </a>
+          <a routerLink="/cart">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4.32507 5.31686C4.16673 5.31686 4.00007 5.2502 3.8834 5.13353C3.64173 4.89186 3.64173 4.49186 3.8834 4.2502L6.9084 1.2252C7.15007 0.983529 7.55007 0.983529 7.79173 1.2252C8.0334 1.46686 8.0334 1.86686 7.79173 2.10853L4.76673 5.13353C4.64173 5.2502 4.4834 5.31686 4.32507 5.31686Z" fill="#202B21"/>
+              <path d="M15.6753 5.31686C15.5169 5.31686 15.3586 5.25853 15.2336 5.13353L12.2086 2.10853C11.9669 1.86686 11.9669 1.46686 12.2086 1.2252C12.4503 0.983529 12.8503 0.983529 13.0919 1.2252L16.1169 4.2502C16.3586 4.49186 16.3586 4.89186 16.1169 5.13353C16.0003 5.2502 15.8336 5.31686 15.6753 5.31686Z" fill="#202B21"/>
+              <path d="M16.842 8.83333C16.7837 8.83333 16.7253 8.83333 16.667 8.83333H16.4753H3.33366C2.75033 8.84167 2.08366 8.84167 1.60033 8.35833C1.21699 7.98333 1.04199 7.4 1.04199 6.54167C1.04199 4.25 2.71699 4.25 3.51699 4.25H16.4837C17.2837 4.25 18.9587 4.25 18.9587 6.54167C18.9587 7.40833 18.7837 7.98333 18.4003 8.35833C17.967 8.79167 17.3837 8.83333 16.842 8.83333ZM3.51699 7.58333H16.6753C17.0503 7.59167 17.4003 7.59167 17.517 7.475C17.5753 7.41667 17.7003 7.21667 17.7003 6.54167C17.7003 5.6 17.467 5.5 16.4753 5.5H3.51699C2.52533 5.5 2.29199 5.6 2.29199 6.54167C2.29199 7.21667 2.42533 7.41667 2.47533 7.475C2.59199 7.58333 2.95033 7.58333 3.31699 7.58333H3.51699Z" fill="#202B21"/>
+              <path d="M8.13379 15.2498C7.79212 15.2498 7.50879 14.9665 7.50879 14.6248V11.6665C7.50879 11.3248 7.79212 11.0415 8.13379 11.0415C8.47546 11.0415 8.75879 11.3248 8.75879 11.6665V14.6248C8.75879 14.9748 8.47546 15.2498 8.13379 15.2498Z" fill="#202B21"/>
+              <path d="M11.9668 15.2498C11.6251 15.2498 11.3418 14.9665 11.3418 14.6248V11.6665C11.3418 11.3248 11.6251 11.0415 11.9668 11.0415C12.3085 11.0415 12.5918 11.3248 12.5918 11.6665V14.6248C12.5918 14.9748 12.3085 15.2498 11.9668 15.2498Z" fill="#202B21"/>
+              <path d="M12.4083 18.9581H7.38329C4.39996 18.9581 3.73329 17.1831 3.47496 15.6415L2.29996 8.43313C2.24162 8.09146 2.47496 7.7748 2.81662 7.71646C3.15829 7.65813 3.47496 7.89146 3.53329 8.23313L4.70829 15.4331C4.94996 16.9081 5.44996 17.7081 7.38329 17.7081H12.4083C14.55 17.7081 14.7916 16.9581 15.0666 15.5081L16.4666 8.21646C16.5333 7.87479 16.8583 7.6498 17.2 7.7248C17.5416 7.79146 17.7583 8.11646 17.6916 8.45813L16.2916 15.7498C15.9666 17.4415 15.425 18.9581 12.4083 18.9581Z" fill="#202B21"/>
+            </svg>
+            <span>{{count}}</span>
+          </a>
+        </div>
+      </div>
+      <div class="header-bottom">
+        <div class="header-bottom-menu">
+          <nav>
+            <ul>
+              <li *ngFor="let category of categories">
+                <a routerLink="catalog" [queryParams]="{types: category?.typesUrl}">{{category.name}}</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+        <div class="header-bottom-search">
+          <input type="text" placeholder="Начните искать"
+          [formControl]="searchField" (blur)="changeShowedSearch(false)" (focus)="changeShowedSearch(true)">
+          <div class="search-products" *ngIf="showedSearch && products && products.length > 0">
+            <div class="search-product" *ngFor="let product of products" (click)="selectProduct(product.url)">
+              <div class="search-product-image"
+              style="background-image: url({{serverStaticPath + product.image}})"
+              ></div>
+              <div class="search-product-name">{{product.name}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

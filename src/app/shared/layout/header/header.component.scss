@@ -1,0 +1,203 @@
+@import "../../../../assets/styles/_variables.scss";
+
+header.header {
+  padding: 30px 0 49px 0;
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+
+    .header-top {
+      padding-top: 32px;
+      padding-bottom: 25px;
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid #C5C5C5;
+      font-family: Montserrat, sans-serif;
+      font-weight: 500;
+      font-style: normal;
+
+      .header-top-menu {
+        margin-left: 26px;
+        margin-right: 191px;
+
+        nav ul {
+          margin: 0;
+          padding: 0;
+          display: flex;
+
+          li {
+            margin-right: 40px;
+            list-style: none;
+            border-bottom: 1px solid transparent;
+
+            &.active {
+              border-bottom-color: $green-text-color;
+            }
+
+            a {
+              font-size: 16px;
+              color: $green-text-color;
+              cursor: pointer;
+              text-decoration: none;
+            }
+          }
+        }
+      }
+
+      .header-top-phone {
+        font-size: 16px;
+        color: $green-text-color;
+        text-decoration: none;
+        margin-right: 59px;
+      }
+
+      .header-top-actions {
+        display: flex;
+        align-items: center;
+
+        a {
+          margin-right: 8px;
+          position: relative;
+          cursor: pointer;
+
+          &:last-child {
+            margin-right: 18px;
+          }
+
+          span {
+            position: absolute;
+            width: 18px;
+            height: 18px;
+            top: 10px;
+            right: -10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: Montserrat, sans-serif;
+            font-style: normal;
+            font-weight: 400;
+            font-size: 9px;
+            color: $green-text-color;
+            border-radius: 50%;
+            background: #B6D5B9;
+          }
+        }
+      }
+    }
+
+    .header-bottom {
+      padding-top: 16px;
+      display: flex;
+      align-items: center;
+
+      .header-bottom-menu {
+        margin-left: 26px;
+        margin-right: 97px;
+
+        nav ul {
+          margin: 0;
+          padding: 0;
+          display: flex;
+
+          li {
+            margin-right: 50px;
+            list-style: none;
+            border-bottom: 1px solid transparent;
+
+            &.active {
+              border-bottom-color: $green-text-color;
+            }
+
+            a {
+              font-size: 16px;
+              color: $green-text-color;
+              text-decoration: none;
+              cursor: pointer;
+            }
+          }
+        }
+      }
+
+      .header-bottom-search {
+        position: relative;
+
+        &::after {
+          content: '';
+          background-image: url("../../../../assets/images/icons/search-normal.png");
+          background-size: cover;
+          position: absolute;
+          width: 16px;
+          height: 16px;
+          left: 15px;
+          top: 11px
+        }
+
+        input {
+          border: 1px solid $green-text-color;
+          border-radius: 30px;
+          padding: 10px 10px 10px 43px;
+          width: 214px;
+          height: 41px;
+          box-sizing: border-box;
+          outline: none;
+          font-size: 16px;
+          color: $green-text-color;
+
+        }
+
+        .search-products {
+          position: absolute;
+          right: 0;
+          top: 61px;
+          width: 400px;
+          background-color: white;
+          border-radius: 5px;
+          border: 1px solid #EBEBEB;
+
+          .search-product {
+            padding: 12px 23px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            background-color: white;
+
+            &:first-child {
+              border-top-left-radius: 5px;
+              border-top-right-radius: 5px;
+            }
+
+            &:last-child {
+              border-bottom-left-radius: 5px;
+              border-bottom-right-radius: 5px;
+            }
+
+            .search-product-image {
+              border-radius: 5px;
+              width: 40px;
+              height: 40px;
+              margin-right: 25px;
+              background-position: center;
+              background-size: cover;
+            }
+
+            .search-product-name {
+              color: #8E8E8E;
+              font-size: 16px;
+              line-height: 130%;
+            }
+
+            &:hover {
+              background-color: #EBEBEB;
+
+              .search-product-name {
+                color: black;
+              }
+            }
+          }
+        }
+      }
+    }
+
+  }
+}

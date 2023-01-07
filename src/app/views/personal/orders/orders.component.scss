@@ -1,0 +1,87 @@
+@import '../../../../assets/styles/variables';
+@import '../../../../assets/styles/mixins';
+@import '../../../../assets/styles/personal';
+
+.orders {
+  padding-top: 56px;
+  padding-bottom: 156px;
+
+  .container {
+    font-size: 16px;
+    .orders-title {
+      font-weight: 500;
+      color: $gray-text-color;
+      margin-bottom: 14px;
+    }
+    .orders-title-additional {
+      color: $gray-text-color;
+      margin-bottom: 67px;
+    }
+    .orders-empty {
+      margin-top: 20px;
+      margin-bottom: 100px;
+      div {
+        font-size: 16px;
+      }
+      .button {
+        width: 255px;
+        margin-top: 10px;
+      }
+    }
+    .orders-list {
+      .orders-list-item {
+        border-bottom: 1px solid #E7F1E8;
+        padding-bottom: 46px;
+        margin-bottom: 47px;
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+
+        &:last-child {
+          border-bottom: 0;
+          padding-bottom: 0;
+          margin-bottom: 0;
+        }
+        .orders-list-item-number {
+          font-size: 20px;
+          text-decoration-line: underline;
+          color: #111111;
+          width: 197px;
+          margin-right: 20px;
+        }
+        .orders-list-items-products {
+          margin-right: 20px;
+          width: 509px;
+          color: #ADADAD;
+          .orders-list-item-products-count {
+            margin-bottom: 12px;
+          }
+          .orders-list-item-product-list tr td:first-child {
+            padding-left: 10px;
+            padding-right: 20px;
+          }
+
+        }
+        .orders-list-item-status {
+          padding: 8px 24px;
+          text-align: center;
+          border: 1px solid #456F49;
+          border-radius: 50px;
+          box-sizing: border-box;
+          background: transparent;
+          color: #456F49;
+        }
+        .orders-list-item-price {
+          width: 186px;
+          text-align: right;
+          font-weight: 600;
+          font-size: 22px;
+          color: #2C2C2C;
+        }
+      }
+
+    }
+  }
+
+}
+

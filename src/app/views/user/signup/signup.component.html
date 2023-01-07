@@ -1,0 +1,45 @@
+<section class="signup" [formGroup]="sigUpForm" passwordRepeat>
+  <div class="container">
+    <div class="auth-form">
+      <div class="auth-title">
+        Регистрация на сайте
+      </div>
+      <div class="auth-inputs">
+        <div class="auth-input">
+          <input type="text" class="input" placeholder="Электронная почта" formControlName="email"
+                 [ngStyle]="{'border-color': sigUpForm.get('email')?.invalid &&
+          (sigUpForm.get('email')?.dirty || sigUpForm.get('email')?.touched) ? 'red' : ''}"
+          >
+        </div>
+        <div class="auth-input">
+          <input type="password" class="input" placeholder="Пароль" formControlName="password"
+                 [ngStyle]="{'border-color': sigUpForm.get('password')?.invalid &&
+          (sigUpForm.get('password')?.dirty || sigUpForm.get('password')?.touched) ? 'red' : ''}"
+          >
+        </div>
+        <div class="auth-input">
+          <input type="password" class="input" placeholder="Повторите пароль" formControlName="repeatPassword"
+                 [ngStyle]="{'border-color': sigUpForm.get('repeatPassword')?.invalid &&
+          (sigUpForm.get('repeatPassword')?.dirty || sigUpForm.get('repeatPassword')?.touched) ? 'red' : ''}"
+          >
+        </div>
+        <div class="auth-checkbox">
+          <input type="checkbox" id="agree" formControlName="agree">
+          <label for="agree">
+            Я принимаю <a href="#">условия пользовательского соглашения</a> и даю
+            <a href="#">согласие на обработку персональных данных.</a>
+          </label>
+        </div>
+        <div class="auth-button">
+          <button class="button" [disabled]="sigUpForm.invalid" (click)="signup()">Зарегистрироваться</button>
+        </div>
+        <div class="auth-link">
+          Уже есть аккаунт?<a routerLink="/login">Войдите</a>
+        </div>
+      </div>
+    </div>
+    <div class="page-image">
+      <img src="/assets/images/page/signup_img.png" alt="flower">
+    </div>
+  </div>
+</section>

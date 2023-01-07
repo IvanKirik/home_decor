@@ -1,0 +1,73 @@
+@import "../../../../assets/styles/variables";
+
+.catalog-filter {
+  border-radius: 5px;
+  margin-bottom: 12px;
+
+  .catalog-filter-head {
+    background: #B6D5B9;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 23px;
+    cursor: pointer;
+    font-size: 16px;
+    color: $gray-text-color;
+
+    svg {
+      margin-top: 2px;
+    }
+  }
+
+  &.open .catalog-filter-head {
+    border-radius: 5px 5px 0 0;
+  }
+
+  .catalog-filter-body {
+    display: none;
+    border: 1px solid #B6D5B9;
+    border-radius: 0 0 5px 5px;
+    padding: 12px 16px;
+
+    .catalog-filter-checkbox {
+      display: flex;
+      align-items: baseline;
+      margin-bottom: 19px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      input {
+        margin-right: 10px;
+
+      }
+    }
+
+    .catalog-filter-from-to {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      input {
+        outline: none;
+      }
+    }
+  }
+
+  &.open .catalog-filter-body {
+    display: block;
+  }
+}
+
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}

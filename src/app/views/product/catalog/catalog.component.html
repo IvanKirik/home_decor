@@ -1,0 +1,70 @@
+<div class="catalog">
+  <div class="container">
+    <div class="catalog-title">Каталог</div>
+    <div class="catalog-head">
+      <div class="catalog-applied-filters">
+        <div class="catalog-applied-filter" *ngFor="let appliedFilter of appliedFilters">
+          <span>{{appliedFilter.name}}</span>
+          <a (click)="removeAppliedFilter(appliedFilter)">
+            <svg width="14" height="15" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <line x1="0.935622" y1="1.1499" x2="12.9564" y2="13.1707" stroke="#A8ABA7" stroke-linecap="round"/>
+              <line x1="12.9238" y1="1.12996" x2="0.903013" y2="13.1508" stroke="#A8ABA7" stroke-linecap="round"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+      <div class="catalog-sorting" [class.open]="sortingOpen" (click)="toggleSorting()">
+        <div class="catalog-sorting-head">
+          <span>Сортировать</span>
+          <svg width="16" height="8" viewBox="0 0 16 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M8.00026 7.50003C7.41693 7.50003 6.83359 7.27503 6.39193 6.83337L0.958594 1.40003C0.716927 1.15837 0.716927 0.758366 0.958594 0.516699C1.20026 0.275033 1.60026 0.275033 1.84193 0.516699L7.27526 5.95003C7.67526 6.35003 8.32526 6.35003 8.72526 5.95003L14.1586 0.516699C14.4003 0.275033 14.8003 0.275033 15.0419 0.516699C15.2836 0.758366 15.2836 1.15837 15.0419 1.40003L9.60859 6.83337C9.16693 7.27503 8.58359 7.50003 8.00026 7.50003Z" fill="#2C2C2C"/>
+          </svg>
+        </div>
+        <div class="catalog-sorting-body">
+          <div class="catalog-sorting-item"
+               [class.active]="activeParams.sort ? activeParams.sort === sortingOption.value : false"
+               (click)="sort(sortingOption.value)"
+               *ngFor="let sortingOption of sortingOptions"
+          >{{sortingOption.name}}</div>
+        </div>
+      </div>
+    </div>
+    <div class="catalog-layout">
+      <div class="catalog-filters">
+        <category-filter [categoryWithTypes]="categoryWithTypes" *ngFor="let categoryWithTypes of categoriesWithTypes"></category-filter>
+        <category-filter type="height"></category-filter>
+        <category-filter type="diameter"></category-filter>
+
+      </div>
+      <div class="catalog-products">
+        <product-card [countInCart]="product.countInCart" *ngFor="let product of products" [product]="product"></product-card>
+      </div>
+    </div>
+    <div class="pagination" *ngIf="pages.length > 1">
+      <div class="pagination-arrow"
+      (click)="openPrevPage()"
+      [class.disabled]="activeParams.page ? activeParams.page === 1 : true"
+      >
+        <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M9.56988 5.98092C9.75988 5.98092 9.94988 6.04973 10.0999 6.19717C10.3899 6.48223 10.3899 6.95405 10.0999 7.2391L4.55988 12.6847L10.0999 18.1303C10.3899 18.4153 10.3899 18.8871 10.0999 19.1722C9.80988 19.4573 9.32988 19.4573 9.03988 19.1722L2.96988 13.2056C2.67988 12.9206 2.67988 12.4488 2.96988 12.1637L9.03988 6.19717C9.18988 6.04973 9.37988 5.98092 9.56988 5.98092Z" fill="#2C2C2C"/>
+          <path d="M3.67 11.9474L20.5 11.9474C20.91 11.9474 21.25 12.2816 21.25 12.6847C21.25 13.0877 20.91 13.4219 20.5 13.4219L3.67 13.4219C3.26 13.4219 2.92 13.0877 2.92 12.6847C2.92 12.2816 3.26 11.9474 3.67 11.9474Z" fill="#2C2C2C"/>
+        </svg>
+      </div>
+      <div class="pagination-pages">
+        <a class="pagination-page"
+           (click)="openPage(page)"
+           [class.active]="activeParams.page ? activeParams.page === page : (page === 1)"
+           *ngFor="let page of pages">{{page}}</a>
+      </div>
+      <div class="pagination-arrow"
+           (click)="openNextPage()"
+           [class.disabled]="activeParams.page ? activeParams.page === pages.length : false"
+      >
+        <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M14.4301 19.3885C14.2401 19.3885 14.0501 19.3197 13.9001 19.1722C13.6101 18.8872 13.6101 18.4153 13.9001 18.1303L19.4401 12.6847L13.9001 7.23913C13.6101 6.95407 13.6101 6.48225 13.9001 6.19719C14.1901 5.91213 14.6701 5.91213 14.9601 6.19719L21.0301 12.1637C21.3201 12.4488 21.3201 12.9206 21.0301 13.2057L14.9601 19.1722C14.8101 19.3197 14.6201 19.3885 14.4301 19.3885Z" fill="#2C2C2C"/>
+          <path d="M20.33 13.4219H3.5C3.09 13.4219 2.75 13.0877 2.75 12.6847C2.75 12.2817 3.09 11.9475 3.5 11.9475H20.33C20.74 11.9475 21.08 12.2817 21.08 12.6847C21.08 13.0877 20.74 13.4219 20.33 13.4219Z" fill="#2C2C2C"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</div>

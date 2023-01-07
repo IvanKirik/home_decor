@@ -1,0 +1,47 @@
+<div class="catalog-filter " [class.open]="open">
+  <div class="catalog-filter-head" (click)="toggle()">
+    <span>{{title}}</span>
+    <svg *ngIf="open" width="16" height="8" viewBox="0 0 16 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M7.99974 -3.14713e-05C8.58307 -3.14713e-05 9.16641 0.224967 9.60807 0.666634L15.0414 6.09997C15.2831 6.34163 15.2831 6.74163 15.0414 6.9833C14.7997 7.22497 14.3997 7.22497 14.1581 6.9833L8.72474 1.54997C8.32474 1.14997 7.67474 1.14997 7.27474 1.54997L1.84141 6.9833C1.59974 7.22497 1.19974 7.22497 0.958073 6.9833C0.716407 6.74163 0.716407 6.34163 0.958073 6.09997L6.39141 0.666634C6.83307 0.224967 7.41641 -3.14713e-05 7.99974 -3.14713e-05Z" fill="#2C2C2C"/>
+    </svg>
+    <svg *ngIf="!open" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M10.0003 14C9.41693 14 8.83359 13.775 8.39193 13.3334L2.95859 7.90003C2.71693 7.65837 2.71693 7.25837 2.95859 7.0167C3.20026 6.77503 3.60026 6.77503 3.84193 7.0167L9.27526 12.45C9.67526 12.85 10.3253 12.85 10.7253 12.45L16.1586 7.0167C16.4003 6.77503 16.8003 6.77503 17.0419 7.0167C17.2836 7.25837 17.2836 7.65837 17.0419 7.90003L11.6086 13.3334C11.1669 13.775 10.5836 14 10.0003 14Z" fill="#2C2C2C"/>
+    </svg>
+
+  </div>
+  <div class="catalog-filter-body">
+    <label class="catalog-filter-checkbox" *ngFor="let type of categoryWithTypes?.types">
+      <input type="checkbox" #input
+             [checked]="activeParams.types.includes(type.url)"
+             (change)="updateFilterParam(type.url, input.checked)">
+      <span>{{type.name}}</span>
+    </label>
+
+    <div class="catalog-filter-from-to" *ngIf="type">
+      <span>от</span>
+      <input type="number" min="0" step="1" [ngModel]="from" (ngModelChange)="updateFilterParamFromTo(type + 'From', $event)" class="small-input">
+      <span>до</span>
+      <input type="number" min="0" step="1" [ngModel]="to" (ngModelChange)="updateFilterParamFromTo(type + 'To', $event)" class="small-input">
+      <span>см</span>
+    </div>
+
+  </div>
+</div>
+
+<!--<div class="catalog-filter open">-->
+<!--  <div class="catalog-filter-head">-->
+<!--    <span>Высота</span>-->
+<!--    <svg width="16" height="8" viewBox="0 0 16 8" fill="none" xmlns="http://www.w3.org/2000/svg">-->
+<!--      <path d="M7.99974 -3.14713e-05C8.58307 -3.14713e-05 9.16641 0.224967 9.60807 0.666634L15.0414 6.09997C15.2831 6.34163 15.2831 6.74163 15.0414 6.9833C14.7997 7.22497 14.3997 7.22497 14.1581 6.9833L8.72474 1.54997C8.32474 1.14997 7.67474 1.14997 7.27474 1.54997L1.84141 6.9833C1.59974 7.22497 1.19974 7.22497 0.958073 6.9833C0.716407 6.74163 0.716407 6.34163 0.958073 6.09997L6.39141 0.666634C6.83307 0.224967 7.41641 -3.14713e-05 7.99974 -3.14713e-05Z" fill="#2C2C2C"/>-->
+<!--    </svg>-->
+<!--  </div>-->
+<!--  <div class="catalog-filter-body">-->
+<!--    <div class="catalog-filter-from-to">-->
+<!--      <span>от</span>-->
+<!--      <input type="number" min="0" step="1" class="small-input">-->
+<!--      <span>до</span>-->
+<!--      <input type="number" min="0" step="1" class="small-input">-->
+<!--      <span>см</span>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->

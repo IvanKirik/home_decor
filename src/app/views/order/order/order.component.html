@@ -1,0 +1,141 @@
+<div class="order">
+  <div class="container">
+    <div class="order-title">
+      Оформление вашего заказа
+    </div>
+    <div class="order-info">
+      <div class="data-form" [formGroup]="orderForm">
+        <div class="data-form-block">
+          <div class="data-form-label">
+            Выберите способ доставки
+          </div>
+          <div class="data-form-types">
+            <div class="data-form-type-item" [class.active]="deliveryType === deliveryTypes.delivery" (click)="changeDeliveryType(deliveryTypes.delivery)">Курьером</div>
+            <div class="data-form-type-item" [class.active]="deliveryType === deliveryTypes.self" (click)="changeDeliveryType(deliveryTypes.self)">Самовывоз</div>
+          </div>
+        </div>
+
+        <div class="data-form-block">
+          <div class="data-form-label">
+            Заполните личные данные
+          </div>
+          <div class="data-form-inputs personal-data-inputs">
+            <input type="text" class="input" placeholder="Фамилия"
+                   [ngStyle]="{'border-color': orderForm.get('lastName')?.invalid &&
+                   (orderForm.get('lastName')?.dirty || orderForm.get('lastName')?.touched) ? 'red' : ''}"
+                   formControlName="lastName">
+            <input type="text" class="input" placeholder="Имя"
+                   [ngStyle]="{'border-color': orderForm.get('firstName')?.invalid &&
+                   (orderForm.get('firstName')?.dirty || orderForm.get('firstName')?.touched) ? 'red' : ''}"
+                   formControlName="firstName">
+            <input type="text" class="input" placeholder="Отчество" formControlName="fatherName">
+            <input type="phone" class="input" placeholder="Телефон"
+                   [ngStyle]="{'border-color': orderForm.get('phone')?.invalid &&
+                   (orderForm.get('phone')?.dirty || orderForm.get('phone')?.touched) ? 'red' : ''}"
+                   formControlName="phone">
+            <input type="email" class="input" placeholder="E-mail"
+                   [ngStyle]="{'border-color': orderForm.get('email')?.invalid &&
+                   (orderForm.get('email')?.dirty || orderForm.get('email')?.touched) ? 'red' : ''}"
+                   formControlName="email">
+          </div>
+        </div>
+
+        <div class="data-form-block" *ngIf="deliveryType !== deliveryTypes.self">
+          <div class="data-form-label">
+            Заполните адрес доставки
+          </div>
+          <div class="data-form-inputs address-inputs" >
+            <input type="text" class="input street" placeholder="Улица"
+                   [ngStyle]="{'border-color': orderForm.get('street')?.invalid &&
+                   (orderForm.get('street')?.dirty || orderForm.get('street')?.touched) ? 'red' : ''}"
+                   formControlName="street">
+            <input type="text" class="input house" placeholder="№ дома"
+                   [ngStyle]="{'border-color': orderForm.get('house')?.invalid &&
+                   (orderForm.get('house')?.dirty || orderForm.get('house')?.touched) ? 'red' : ''}"
+                   formControlName="house">
+            <input type="text" class="input entrance" placeholder="Подъезд"
+                   [ngStyle]="{'border-color': orderForm.get('entrance')?.invalid &&
+                   (orderForm.get('entrance')?.dirty || orderForm.get('entrance')?.touched) ? 'red' : ''}"
+                   formControlName="entrance">
+            <input type="text" class="input apartment" placeholder="№ квартиры"
+                   [ngStyle]="{'border-color': orderForm.get('apartment')?.invalid &&
+                   (orderForm.get('apartment')?.dirty || orderForm.get('apartment')?.touched) ? 'red' : ''}"
+                   formControlName="apartment">
+          </div>
+        </div>
+
+        <div class="data-form-block">
+          <div class="data-form-label">
+            Выберите способ оплаты
+          </div>
+          <div class="data-form-radio">
+            <div class="data-form-radio-block">
+              <input type="radio" id="card" value="{{paymentType.cardOnline}}" formControlName="paymentType">
+              <label for="card">Оплата банковской картой в интернет-магазине</label>
+            </div>
+            <div class="data-form-radio-block">
+              <input type="radio" id="cashless" value="{{paymentType.cardToCourier}}" formControlName="paymentType">
+              <label for="cashless">Безналичный расчет при получении</label>
+            </div>
+            <div class="data-form-radio-block">
+              <input type="radio" id="cash" value="{{paymentType.cashToCourier}}" formControlName="paymentType">
+              <label for="cash">Наличный расчет при получении</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="data-form-block">
+          <div class="data-form-label">
+            Комментарий к заказу (необязательно)
+          </div>
+          <div class="data-form-inputs">
+            <textarea cols="30" rows="5" class="input"
+            placeholder="Оставьте свой комментарий..." formControlName="comment"></textarea>
+          </div>
+        </div>
+
+      </div>
+      <div class="order-details">
+        <div class="order-details-info">
+          <div class="order-details-info-title">Ваш заказ</div>
+          <div class="order-details-info-item">
+            <div class="order-details-info-item-text">Товаров:</div>
+            <div class="order-details-info-item-order">{{totalCount}}</div>
+          </div>
+          <div class="order-details-info-item">
+            <div class="order-details-info-item-text">Общая стоимость:</div>
+            <div class="order-details-info-item-data">{{totalAmount}} BYN</div>
+          </div>
+          <div class="order-details-info-item">
+            <div class="order-details-info-item-text">Стоимость доставки:</div>
+            <div class="order-details-info-item-data">10 BYN</div>
+          </div>
+          <div class="order-details-info-item">
+            <div class="order-details-info-item-text">Итоговая стоимость:</div>
+            <div class="order-details-info-item-data">{{totalAmount + 10}} BYN</div>
+          </div>
+        </div>
+        <button class="button" (click)="createOrder()">Подтвердить заказ</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #popup>
+    <div class="order-popup">
+      <div class="ordera-popup-close" (click)="closePopup()">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <line x1="0.935622" y1="0.649902" x2="12.9564" y2="12.6707" stroke="#A8ABA7" stroke-linecap="round"/>
+          <line x1="12.9238" y1="0.629714" x2="0.903013" y2="12.6505" stroke="#A8ABA7" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="order-popup-title">
+        Благодарим за заказ!
+      </div>
+      <div class="order-popup-content">
+        <div>Ваш заказ оформлен.</div>
+        <div>Вся информация о заказе была выслана вам на почту.</div>
+        <div>Курьер свяжется с вами за два часа до доставки товара.</div>
+      </div>
+    </div>
+</ng-template>

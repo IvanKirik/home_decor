@@ -1,0 +1,108 @@
+@import "variables";
+@import "mixins";
+
+.data-form {
+  max-width: 646px;
+
+  .data-form-block {
+    margin-bottom: 30px;
+
+    .data-form-label {
+      margin-bottom: 20px;
+      font-weight: 500;
+      font-size: 16px;
+      color: $gray-text-color;
+    }
+
+    .data-form-label-additional {
+      font-size: 16px;
+      line-height: 130%;
+      color: $gray-text-color;
+      margin-bottom: 20px;
+      max-width: 528px;
+    }
+
+    .data-form-types {
+      display: flex;
+      align-items: center;
+      max-width: 340px;
+      box-sizing: border-box;
+      border: 1px solid #519157;
+      border-radius: 3px;
+      text-align: center;
+      font-size: 18px;
+      color: $gray-text-color;
+
+      .data-form-type-item {
+        padding: 13px 35px;
+        cursor: pointer;
+        background: transparent;
+
+        &.active {
+          color: white;
+          background-color: #519157;
+        }
+      }
+    }
+
+    .data-form-inputs {
+      display: grid;
+      gap: 8px;
+
+      input[type=text] {
+        height: 53px;
+      }
+
+      &.personal-data-inputs {
+        grid-template-columns: repeat(3, 210px);
+      }
+
+      &.address-inputs {
+        grid-template-columns: repeat(2, 125px) 162px;
+        grid-template-rows: 1fr 1fr;
+        grid-template-areas:
+                "street street street"
+                "house entrance apartment";
+      }
+
+      .street {
+        grid-area: street;
+      }
+
+      .house {
+        grid-area: house;
+      }
+
+      .entrance {
+        grid-area: entrance;
+      }
+
+      .apartment {
+        grid-area: apartment;
+      }
+    }
+
+    .data-form-radio {
+      .data-form-radio-block {
+        margin-bottom: 12px;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+
+        label {
+          color: $gray-text-color;
+          font-size: 16px;
+        }
+
+        input:checked {
+          + label {
+            font-family: Montserrat, sans-serif;
+            font-weight: 500;
+          }
+        }
+      }
+    }
+  }
+
+}
