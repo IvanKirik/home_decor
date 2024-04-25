@@ -113,7 +113,7 @@ export class CatalogComponent implements OnInit {
 
   public openNextPage(): void {
     if (this.activeParams.page && this.activeParams.page > 1) {
-      this.activeParams.page++
+      this.activeParams.page--
       this.router.navigate(['/catalog'], {
         queryParams: this.activeParams
       })
@@ -123,7 +123,7 @@ export class CatalogComponent implements OnInit {
 
   public openPrevPage(): void {
     if (this.activeParams.page && this.activeParams.page < this.pages.length) {
-      this.activeParams.page--
+      this.activeParams.page++
       this.router.navigate(['/catalog'], {
         queryParams: this.activeParams
       })

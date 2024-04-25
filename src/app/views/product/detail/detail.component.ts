@@ -1,3 +1,4 @@
+
 import {Component, OnInit} from '@angular/core';
 import {OwlOptions} from "ngx-owl-carousel-o";
 import {ProductType} from "../../../../types/product.type";

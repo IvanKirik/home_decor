@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import {FormBuilder, Validators} from "@angular/forms";
 import {AuthService} from "../../../core/auth/auth.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
@@ -12,7 +12,7 @@ import {HttpErrorResponse} from "@angular/common/http";
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.scss']
 })
-export class SignupComponent implements OnInit {
+export class SignupComponent {
 
   public sigUpForm = this.fb.group({
     email: ['', [Validators.email, Validators.required]],
@@ -25,9 +25,6 @@ export class SignupComponent implements OnInit {
               private authService: AuthService,
               private _snackBar: MatSnackBar,
               private router: Router) {
-  }
-
-  ngOnInit(): void {
   }
 
   public signup(): void {
